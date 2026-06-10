@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useTodo } from '../context/TodoContext';
+import { useTodo } from '../hooks/useTodo.js';
 
 function TodoItem({ todo }) {
   const { alternarConclusao, removerTodo } = useTodo();
