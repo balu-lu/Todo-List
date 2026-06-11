@@ -1,15 +1,23 @@
 import { useState } from 'react';
-import { useTodo } from '../context/TodoContext.jsx';
+import { useSetRecoilState } from 'recoil';
+import { todoListState } from '../atoms/todoState';
 
 export default function TodoForm() {
   const [texto, setTexto] = useState('');
-  const { adicionarTodo } = useTodo();
+  const setTodoList = useSetRecoilState(todoListState);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!texto.trim()) return;
 
-    adicionarTodo(texto);
+    setTodoList((listaAtual) => [
+      {
+        id: crypto.randomUUID(),
+        texto: texto.trim(),
+        concluida: false,
+      },
+      ...listaAtual,
+    ]);
     setTexto('');
   };
 

@@ -1,51 +1,56 @@
 # TaskMaster
 
-TaskMaster é uma aplicação de lista de tarefas feita com React e Vite, com foco em uma experiência visual mais polida, persistência local e filtros rápidos para acompanhar o status das tarefas.
+TaskMaster is a todo app built with React, Vite, Tailwind CSS and Recoil.
 
-## Funcionalidades
+## What it does
 
-- Criar novas tarefas com validação para impedir envios vazios.
-- Marcar tarefas como concluídas ou pendentes.
-- Filtrar a lista entre todas, pendentes e concluídas.
-- Excluir tarefas individualmente.
-- Salvar automaticamente as tarefas no `localStorage`.
-- Interface construída com Tailwind CSS.
+- Add new tasks with validation for empty input.
+- Mark tasks as completed or pending.
+- Filter tasks by all, pending, or completed.
+- Remove tasks individually.
+- Use Recoil for global state management.
 
-## Tecnologias
+## Tech Stack
 
-- React 19
+- React 18.2
 - Vite
 - Tailwind CSS 4
-- Context API
-- Hooks personalizados
-- `useMemo` e `React.memo` para otimização de renderização
+- Recoil
+- Docker
 
-## Estrutura Principal
+## Project Structure
 
-- `src/App.jsx`: layout principal da aplicação.
-- `src/components/TodoForm.jsx`: formulário para adicionar tarefas.
-- `src/components/TodoFilter.jsx`: seleção entre todas, pendentes e concluídas.
-- `src/components/TodoList.jsx`: exibição da lista filtrada.
-- `src/components/TodoItem.jsx`: item individual com concluir e excluir.
-- `src/context/TodoProvider.jsx`: estado global e ações da aplicação.
-- `src/hooks/useLocalStorage.js`: persistência local dos dados.
-- `src/hooks/useTodo.js`: acesso ao contexto da aplicação.
+- `src/App.jsx`: main app layout.
+- `src/components/TodoForm.jsx`: task creation form.
+- `src/components/TodoFilter.jsx`: filter selector.
+- `src/components/TodoList.jsx`: filtered task list.
+- `src/components/TodoItem.jsx`: single task row.
+- `src/atoms/todoState.js`: Recoil atoms.
+- `src/selectors/filteredTodoListState.js`: filtered task selector.
+- `src/main.jsx`: app bootstrap with `RecoilRoot`.
 
-## Como Executar
+## Run Locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Scripts Disponíveis
+## Run with Docker
 
-- `npm run dev`: inicia o ambiente de desenvolvimento.
-- `npm run build`: gera a versão de produção.
-- `npm run preview`: visualiza a build gerada.
-- `npm run lint`: executa o ESLint no projeto.
+```bash
+docker compose up --build
+```
 
-## Observações
+Then open:
 
-- O projeto usa `localStorage`, então as tarefas permanecem salvas entre recarregamentos do navegador.
-- O filtro animado e o layout principal foram pensados para funcionar bem em desktop e mobile.
+```bash
+http://localhost:5173
+```
+
+## Scripts
+
+- `npm run dev`: start the dev server.
+- `npm run build`: build for production.
+- `npm run preview`: preview the production build.
+- `npm run lint`: run ESLint.

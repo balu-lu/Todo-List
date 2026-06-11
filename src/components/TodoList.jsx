@@ -1,8 +1,9 @@
 import TodoItem from './TodoItem';
-import { useTodo } from '../context/TodoContext.jsx';
+import { useRecoilValue } from 'recoil';
+import { filteredTodoListState } from '../selectors/filteredTodoListState';
 
 export default function TodoList() {
-  const { filteredTodos } = useTodo();
+  const filteredTodos = useRecoilValue(filteredTodoListState);
 
   if (filteredTodos.length === 0) {
     return (

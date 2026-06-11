@@ -1,7 +1,8 @@
-import { useTodo } from '../context/TodoContext.jsx';
+import { useRecoilState } from 'recoil';
+import { todoListFilterState } from '../atoms/todoState';
 
 export default function TodoFilter() {
-  const { filtro, setFiltro } = useTodo();
+  const [filtro, setFiltro] = useRecoilState(todoListFilterState);
 
   const botoes = [
     { id: 'todas', label: 'Todas' },
@@ -9,10 +10,7 @@ export default function TodoFilter() {
     { id: 'concluidas', label: 'Concluídas' },
   ];
 
-  const posicaoAtual = Math.max(
-    0,
-    botoes.findIndex((btn) => btn.id === filtro)
-  );
+  const posicaoAtual = Math.max(0, botoes.findIndex((btn) => btn.id === filtro));
 
   return (
     <div className="relative mb-8 grid grid-cols-3 rounded-2xl border border-white/5 bg-slate-900/60 p-1 shadow-inner backdrop-blur-md">

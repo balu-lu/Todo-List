@@ -1,8 +1,21 @@
 import { memo } from 'react';
-import { useTodo } from '../context/TodoContext.jsx';
+import { useSetRecoilState } from 'recoil';
+import { todoListState } from '../atoms/todoState';
 
 function TodoItem({ todo }) {
-  const { alternarConclusao, removerTodo } = useTodo();
+  const setTodoList = useSetRecoilState(todoListState);
+
+  const alternarConclusao = (id) => {
+    setTodoList((listaAtual) =>
+      listaAtual.map((item) =>
+        item.id === id ? { ...item, concluida: !item.concluida } : item
+      )
+    );
+  };
+
+  const removerTodo = (id) => {
+    setTodoList((listaAtual) => listaAtual.filter((item) => item.id !== id));
+  };
 
   return (
     <li className="group relative flex items-center justify-between rounded-2xl border border-white/5 bg-slate-800/40 p-5 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-indigo-500/30 hover:bg-slate-800/60 hover:shadow-md">
