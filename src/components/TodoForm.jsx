@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useTodo } from '../hooks/useTodo.js';
+import { useTodo } from '../context/TodoContext.jsx';
 
 export default function TodoForm() {
   const [texto, setTexto] = useState('');
@@ -7,13 +7,14 @@ export default function TodoForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!texto.trim()) return; // Validação de segurança
+    if (!texto.trim()) return;
+
     adicionarTodo(texto);
-    setTexto(''); // Limpa o input
+    setTexto('');
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-10 relative">
+    <form onSubmit={handleSubmit} className="relative mb-10">
       <div className="flex flex-col gap-3 sm:flex-row">
         <input
           type="text"
